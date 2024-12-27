@@ -1,8 +1,11 @@
 import React from 'react'
+import Employeelist from './EmployeeList'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Employeelist />
+    </div>
   )
 }
 
