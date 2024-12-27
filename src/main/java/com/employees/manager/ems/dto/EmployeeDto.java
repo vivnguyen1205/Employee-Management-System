@@ -10,9 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 // dto - (data transfer object) : object that defines how the data will be sent over the network or application.
 public class EmployeeDto {
-    private long ID;
-    private String firstName;
-    private String lastName;
+    private long id; // Match case with Employee entity
+    private String firstName; // Match case with Employee entity
+    private String lastName;  // Match case with Employee entity
     private String email;
-
 }
