@@ -31,8 +31,18 @@ private EmployeeRepository employeeRepository;
     }
     @Override
     public EmployeeDto getEmployeeById(Long id) {
-        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeResourceNotFoundException("Employee ID requestd does not exist"));
+        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeResourceNotFoundException("Employee ID requested does not exist"));
        return EmployeeMapper.mapToEmployeeDto(employee);
+    }
+
+    @Override
+    public EmployeeDto updateEmployeeById(Long id, EmployeeDto employeeDto) {
+       Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeResourceNotFoundException("Employee ID requested does not exist"));
+        employee.setFirstName(employeeDto.getFirstName());
+        employee.setLastName(employeeDto.getLastName());
+        employee.setEmail(employeeDto.getEmail());
+        employeeRepository.save(employee);
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
 //    public List<EmployeeDto> getAllEmployee(){
