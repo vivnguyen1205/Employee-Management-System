@@ -6,12 +6,15 @@ import com.employees.manager.ems.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
-public class EmployeeServiceImp implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService{
 
 private EmployeeRepository employeeRepository;
-    @Override
+
     public EmployeeDto createNewEmployee(EmployeeDto employeeDto){
         Employee newEmployee = EmployeeMapper.mapToEmployee(employeeDto);
         Employee savedEmployee = employeeRepository.save(newEmployee);
@@ -19,6 +22,15 @@ private EmployeeRepository employeeRepository;
 
 
     }
+
+    @Override
+    public List<EmployeeDto> getAllEmployees() {
+        List<Employee> allEmployees = employeeRepository.findAll();
+        return allEmployees.stream().map((e)-> EmployeeMapper.mapToEmployeeDto(e)).collect(Collectors.toList());
+    }
+
+//    public List<EmployeeDto> getAllEmployee(){
+
 
 
 
