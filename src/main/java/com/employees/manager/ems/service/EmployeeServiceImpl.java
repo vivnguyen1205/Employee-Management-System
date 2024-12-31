@@ -45,6 +45,12 @@ private EmployeeRepository employeeRepository;
         return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
+    @Override
+    public void deleteEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeResourceNotFoundException("Employee ID requested does not exist"));
+        employeeRepository.deleteById(id);
+    }
+
 //    public List<EmployeeDto> getAllEmployee(){
 
 
