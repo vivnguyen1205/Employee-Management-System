@@ -1,6 +1,7 @@
 package com.employees.manager.ems.service;
 import com.employees.manager.ems.dto.EmployeeDto;
 import com.employees.manager.ems.entity.Employee;
+import com.employees.manager.ems.exception.EmployeeResourceNotFoundException;
 import com.employees.manager.ems.mapper.EmployeeMapper;
 import com.employees.manager.ems.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,11 @@ private EmployeeRepository employeeRepository;
     public List<EmployeeDto> getAllEmployees() {
         List<Employee> allEmployees = employeeRepository.findAll();
         return allEmployees.stream().map((e)-> EmployeeMapper.mapToEmployeeDto(e)).collect(Collectors.toList());
+    }
+    @Override
+    public EmployeeDto getEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EmployeeResourceNotFoundException("Employee ID requestd does not exist"));
+       return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
 //    public List<EmployeeDto> getAllEmployee(){
