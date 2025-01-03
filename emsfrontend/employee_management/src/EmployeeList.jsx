@@ -10,7 +10,7 @@ const Employeelist = () => {
     setLoading(true);
     setError(null); // Clear previous errors
     try{
-      const response = await axios.get("http://localhost:8080/api/employees");
+      const response = await axios.get("/api/employees");
       setEmployees(response.data);
 
     }catch(err){
@@ -25,20 +25,22 @@ const Employeelist = () => {
   useEffect(() => {
     fetchEmployees();
 },[]);
-  if(loading) return <div>loading...</div>
-  if(error) return <div>{error}</div>
+
+
+  if(loading) return <div className='text-center mt-5'>loading...</div>
+  if(error) return <div className='alert alert-danger text-center'>{error}</div>
 
 
   return(
-    <div>
-      <h1>Employee List</h1>
-      <button onClick={fetchEmployees}>Refresh Employee List </button>
+    <div className='container mt-5'>
+      <h1 className='text-center mb-4'> Employee List</h1>
+      <button className = 'btn btn-primary mb-4' onClick={fetchEmployees}>Refresh Employee List </button>
     {employees.length == 0}? <p> No Employees found</p> : (
-      <ul>{employees.map((employee) => (
-          <div key = {employee.id}>
-            <div>
-            <h5>{employee.firstName}{employee.lastName}</h5>
-            <p>{employee.email}</p>
+      <ul className='list-group'> {employees.map((employee) => (
+          <div key = {employee.id} className='card mb-3'>
+            <div className='card-body'>
+            <h5 className='card-title'> {employee.firstName}{employee.lastName}</h5>
+            <p className='card-text'>{employee.email}</p>
             </div>
           </div>
         ))}
