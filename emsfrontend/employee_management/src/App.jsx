@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import CreateEmployee from './CreateEmployee'
 import Employeelist from './EmployeeList'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 const App = () => {
