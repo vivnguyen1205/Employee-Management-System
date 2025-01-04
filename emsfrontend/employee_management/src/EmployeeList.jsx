@@ -64,7 +64,7 @@ const handleModalClose = () => {
     <div className='container mt-5'>
       <h1 className='text-center mb-4'> Employee List</h1>
       <button className = 'btn btn-primary mb-4' onClick={fetchEmployees}>Refresh Employee List </button>
-    {employees.length == 0}? <p> No Employees found</p> : (
+      {employees.length === 0 ? (<p>No Employees found</p>) : (
       <ul className='list-group'> {employees.map((employee) => (
           <div key = {employee.id} className='card mb-3'>
             <div className='card-body'>
@@ -78,10 +78,10 @@ const handleModalClose = () => {
           </div>
         ))}
       </ul>
-    )
-    {/* { render the updateemployee modal} */}
+    )}
+    // {/* { render the updateemployee modal} */}
     {showModal && (
-      <UpdateEmployee employeeId={selectedEmployeeId} 
+      <UpdateEmployee employeeId={selectedEmployeeId}
       onClose={handleModalClose}
       onUpdate={fetchEmployees}
       />

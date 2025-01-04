@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const UpdateEmployee = ({ employeeId, onClose, onUpdate }) => {
   const [employee, setEmployee] = useState(null); // react hook that initializes the state, initial value is empty array. current state is stored in employees and setEmployees is used to update the state.
